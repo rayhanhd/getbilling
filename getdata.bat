@@ -3,6 +3,7 @@ setlocal enabledelayedexpansion
 
 set "input_folder=C:\Program Files\hms\smdr\copy"
 set "output_file=output_combined.txt"
+set "regex=(\d{2}.\d{2}.\d{2})(\d{2}:\d{2}:\d{2})\s+(\d+)\s+(\d+)\s+(\d{2}:\d{2}:\d{2})(\d+)(\d)\s+(\d)\s+(\d)"
 
 if not exist "!input_folder!" (
     echo Input folder "!input_folder!" not found.
@@ -21,10 +22,13 @@ for %%F in ("!input_folder!\*.txt") do (
         set "content=!content!%%a"
     )
 
-    rem Append the content to the output file
-    echo !content! >> "%~dp0\!output_file!"
+    rem Split the content based on the specified regular expression
+    for /f "tokens=*" %%s in ('echo !content! ^| findstr /r /c:"%regex%"') do (
+        rem Append each part to the output file
+        echo %%s >> "%~dp0\!output_file!"
+    )
 )
 
-echo Combined content from all .txt files has been stored in "!output_file!".
+echo Content from all .txt files has been split based on the regex and stored in "!output_file!".
 
 endlocal
