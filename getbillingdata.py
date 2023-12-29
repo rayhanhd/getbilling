@@ -14,8 +14,8 @@ failed_filename = "failed.txt"
 logging.basicConfig(filename=log_filename, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Define Supabase URL and API Key
-supabase_url = "End Point URL"
-supabase_key = "API Key"
+supabase_url = "https://qeuhwbauvxyevuvjnrcw.supabase.co"
+supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFldWh3YmF1dnh5ZXZ1dmpucmN3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMzY0NDI5NiwiZXhwIjoyMDE5MjIwMjk2fQ.YrobOni-rdd5MB8OXqHcfLptEEGtaLILgFHCeFM0FSE"
 
 # Create a Supabase client
 supabase = create_client(supabase_url, supabase_key)
